@@ -1,0 +1,46 @@
+{% extends 'courses/basic.html' %}
+
+{% block title %} Enquire {% endblock %}
+{% block body %}
+
+<div class="container my-4">
+    <img src="https://source.unsplash.com/1600x400/?user,person" class="img-fluid" alt="Responsive image">
+    <h3 class="mx-3 my-3"> Contact Us For Any Enquery</h3>
+    <form class="mx-3 my-3" action="/courses/enquire/" method="post">{% csrf_token %}
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name ">
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" class="form-control my-2" id="email2" name="email2" placeholder="Enter your email ">
+        </div>
+        <div>
+            <label for="subject">Subject</label>
+            <input type="text" class="form-control my-2" id="subject" name="subject" placeholder="Enter enter the subject you want to learn ">
+        </div>
+        <div>
+            <label for="dob">DOB</label>
+            <input type="text" class="form-control my-2" id="dob" name="dob" placeholder="Enter your date of birth ">
+        </div>
+        <div>
+            <label for="state">State</label>
+            <input type="text" class="form-control my-2" id="state" name="state" placeholder="Enter your state ">
+        </div>
+        <div>
+            <label for="number">Phone Number</label>
+            <input type="number" class="form-control my-2" id="number" name="number"
+                placeholder="Enter your phone number ">
+        </div>
+        <div class="form-group">
+            <label for="desc">Enquire to subject?</label>
+            <textarea class="form-control" id="desc" name="desc" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+
+</div>
+
+
+
+{% endblock %}
