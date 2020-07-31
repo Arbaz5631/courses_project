@@ -12,12 +12,15 @@
 
     <title>iCoder- heaven for programmers</title>
     <link rel="icon" href="icon.jpg" type="image/icon">
-    <script>
-        $(document).on('click','.enquire',function(){
-	$(window).attr('location','http://127.0.0.1:8000/courses/enquire') 
-});
-
-    </script>
+    <style>
+        .username{
+            color: aliceblue;
+            font-size: 18px;
+            margin-left: 2px;
+            margin-top: 7px;
+        }
+    </style>
+   
 </head>
 
 <body>
@@ -39,32 +42,59 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/courses/about">About</a>
                 </li>
+                
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Topics
                     </a>
+                    
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/courses/java">Java</a>
                         <a class="dropdown-item" href="/courses/python">Python</a>
                         <a class="dropdown-item" href="/courses/web">Android development</a>
                         <a class="dropdown-item" href="/courses/android">Web development</a>
-
-
-
-                    </div>
+                    </div>  
+                   
                 </li>
+               
                 <li class="nav-item">
                     <a class="nav-link" href="/courses/contact">contact us</a>
                 </li>
+                <li class ='username'>Hello {{user.username}}</li>
             </ul>
+            
+            
+            
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-danger my-2 my-sm-0" type="submit">Search</button>
+                <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
             </form>
+            
+            {% if user.is_authenticated %}
             <div class="mx-2">
-                <button type="submit" class="btn btn-danger enquire" onClick=location.href="/courses/enquire" >Enquire</button>
+                
+                <a href="/logout" class="btn btn-danger"> Logout</a>
+                
             </div>
+            {% else %}
+            <div class="mx-2">
+    
+
+            
+                <a href="/login" class="btn btn-primary"> Login</a>
+            
+                
+            
+                
+            </div>
+            {% endif %}
+            
+            
+            
+            
+            
+            
         </div>
     </nav>
 

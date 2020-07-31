@@ -12,4 +12,7 @@ urlpatterns = [
     path('privacyterms/',views.privacyterms,name='privacyterms'),
     path('contact/',views.contact,name='contact'),
     path('enquire/',views.enquire,name='enquire'),
+    path('register/',views.register,name='register'),
+    path('login/',views.login,name='login'),
+    path('logout/',views.logout,name='logout')
 ]

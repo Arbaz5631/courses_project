@@ -1,9 +1,57 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from . models import Contact,Enquire
+from django.contrib import messages
+from .forms import  CreateUserForm
+from django.contrib.auth import authenticate, login as dj_login, logout as dj_logout
+from django.contrib.auth.models import Group
+from courses.models import *
+
 # Create your views here.
 
 
+def login(request):
+    if request.method == 'POST':
+       username = request.POST.get("username")
+       password = request.POST.get("password")
+       user = authenticate(request, username=username, password=password)
+       if user is not None:
+           dj_login(request,user)
+           print('hello1')
+           return redirect('/')
+       else:
+           p
+           messages.info(request,'Your Password is Incorrect')
+           return redirect('login')
+    
+    param={}
+    return render(request, 'courses/login.html',param)
+
+def logout(request):
+    dj_logout(request)
+    return redirect('login')
+    
+
+def register(request):
+     form = CreateUserForm()
+     if request.method=='POST':
+         form= CreateUserForm(request.POST)
+         if form.is_valid():
+             user=form.save()
+             username=form.cleaned_data.get('username')
+             group=Group.objects.get(name='Student') #
+             user.groups.add(group)# both hash tag line are used when user register in the page then then itself add the customer group.
+             
+             
+             
+             messages.success(request,'Accout was created for ' +username)
+             return redirect('/login')
+     
+     param={'form':form}
+     return render(request, 'courses/register.html',param)
+
 def index(request):
+    usercourses = request.user.username
+    student = Student.course_set
     return render(request, 'courses/index.html')
 
 
